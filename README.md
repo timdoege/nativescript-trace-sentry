@@ -1,4 +1,7 @@
-# NativeScript Sentry TraceWriter
+# NativeScript Sentry TraceWriter ![apple](https://cdn3.iconfinder.com/data/icons/picons-social/57/16-apple-32.png) ![android](https://cdn4.iconfinder.com/data/icons/logos-3/228/android-32.png)
+
+[![npm](https://img.shields.io/npm/v/nativescript-trace-sentry.svg)](https://www.npmjs.com/package/nativescript-trace-sentry)
+[![npm](https://img.shields.io/npm/dm/nativescript-trace-sentry.svg)](https://www.npmjs.com/package/nativescript-trace-sentry)
 
 This plugin provides a custom NativeScript TraceWriter that will log messages to Sentry.io using the [Official Sentry SDK for Browsers](https://www.npmjs.com/package/@sentry/browser). This is useful for capturing trace messages in production from user iOS and Android devices.
 This plugin is based on Todd Anglin's NativeScript Raven TraceWriter (https://github.com/toddanglin/nativescript-trace-raven) plugin which uses the depreacted (but supported) Raven.JS library for Sentry.
