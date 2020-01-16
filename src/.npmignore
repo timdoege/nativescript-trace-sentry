@@ -1,0 +1,13 @@
+demo/
+screenshots/
+
+*.gif
+*.png
+*.log
+*.map
+*.ts
+!*.d.ts
+tsconfig.json
+references.d.ts
+
+.vscode
