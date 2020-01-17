@@ -3,6 +3,7 @@ import { Event, Response, Status } from '@sentry/types';
 import { logger, parseRetryAfterHeader, SyncPromise } from '@sentry/utils';
 import * as http from "tns-core-modules/http";
 import { device, isAndroid } from 'tns-core-modules/platform/platform';
+import * as app from "tns-core-modules/application";
 import * as trace from "tns-core-modules/trace";
 import { DeviceOrientation } from "tns-core-modules/ui/enums";
 import { Page, ShownModallyData } from "tns-core-modules/ui/page";
@@ -119,6 +120,7 @@ export class TraceSentry {
       if (!appVersion) {
         this.initAppVersion();
       }
+      this.initBatteryStatus();
     }
 
   private initAutoCrumbs() {
@@ -171,5 +173,21 @@ export class TraceSentry {
         Sentry.setTag('app_version' , version);
     });
   }
+
+  private initBatteryStatus() {
+    if (isAndroid) {
+      app.android.registerBroadcastReceiver(android.content.Intent.ACTION_BATTERY_CHANGED,
+        (context: android.content.Context, intent: android.content.Intent) => {
+            let level = intent.getIntExtra(android.os.BatteryManager.EXTRA_LEVEL, -1);
+            let scale = intent.getIntExtra(android.os.BatteryManager.EXTRA_SCALE, -1);
+            this.batteryPercent = (level / scale) * 100.0;
+        });
+    } else {
+      app.ios.addNotificationObserver(UIDeviceBatteryLevelDidChangeNotification,
+        (notification: NSNotification) => {
+            this.batteryPercent = UIDevice.currentDevice.batteryLevel * 100;
+        });
+    }
+  }  
 
 }
