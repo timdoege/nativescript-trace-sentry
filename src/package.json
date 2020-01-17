@@ -1,6 +1,6 @@
 {
   "name": "nativescript-trace-sentry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Custom NativeScript TraceWriter using @sentry/browser to write logs to Sentry.io",
   "main": "trace-sentry",
   "typings": "index.d.ts",
